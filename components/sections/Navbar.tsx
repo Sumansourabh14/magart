@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="row-start-3 flex gap-[24px] flex-wrap items-center justify-between max-w-[1400px] mx-auto">
       <section>
-        <p>{SITE_METADATA.title}</p>
+        <Link href={`/`}>{SITE_METADATA.title}</Link>
       </section>
       <section>
         <Link
