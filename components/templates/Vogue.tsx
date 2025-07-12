@@ -17,8 +17,7 @@ export default function VogueTemplate({
   name,
 }: TemplateProps) {
   return (
-    <div
-      id="cover"
+    <section
       className="relative w-[600px] h-[800px] overflow-hidden"
       style={{ fontFamily: "Didot, serif" }}
     >
@@ -43,6 +42,6 @@ export default function VogueTemplate({
       <div className="absolute bottom-6 left-6 text-sm tracking-wider uppercase">
         {name}
       </div>
-    </div>
+    </section>
   );
 }
