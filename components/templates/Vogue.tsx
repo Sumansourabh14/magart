@@ -15,7 +15,7 @@ export default function VogueTemplate({
       className="relative w-[600px] h-[800px] overflow-hidden"
       style={{ fontFamily: "Didot, serif" }}
     >
-      <div className="max-w-[700px]">
+      <div className="relative w-full h-full">
         <Image
           src={image}
           alt="cover background"

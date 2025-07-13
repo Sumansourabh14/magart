@@ -23,7 +23,12 @@ const TemplateDownloader = ({ children }: React.PropsWithChildren) => {
 
   return (
     <section className="space-y-4">
-      <section ref={ref}>{children}</section>
+      <section
+        ref={ref}
+        className="w-[600px] h-[800px] overflow-hidden relative shadow-lg"
+      >
+        {children}
+      </section>
       <Button onClick={handleDownload}>
         <DownloadIcon /> Download
       </Button>

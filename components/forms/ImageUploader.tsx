@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import VogueTemplate from "../templates/Vogue";
 import { Input } from "../ui/input";
+import TemplateDownloader from "../utils/TemplateDownloader";
 
 const ImageUploader = () => {
   const [image, setImage] = useState<string | null>(null);
@@ -24,12 +25,14 @@ const ImageUploader = () => {
       </form>
 
       {image && (
-        <VogueTemplate
-          image={image}
-          name="John Doe"
-          title="Vogue"
-          subtitle="Vogue subtitle"
-        />
+        <TemplateDownloader>
+          <VogueTemplate
+            image={image}
+            name="John Doe"
+            title="Vogue"
+            subtitle="Vogue subtitle"
+          />
+        </TemplateDownloader>
       )}
     </>
   );
