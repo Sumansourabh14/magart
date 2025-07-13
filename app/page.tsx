@@ -1,4 +1,3 @@
-import DisplayTemplate from "@/components/sections/DisplayTemplate";
 import Footer from "@/components/sections/Footer";
 import Hero from "@/components/sections/Hero";
 import Navbar from "@/components/sections/Navbar";
@@ -10,7 +9,7 @@ export default function Home() {
       <main className="py-20">
         <Hero />
         <section className="max-w-[1400px] mx-auto">
-          <DisplayTemplate />
+          {/* <DisplayTemplate /> */}
         </section>
       </main>
       <Footer />

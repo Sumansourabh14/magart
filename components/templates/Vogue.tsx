@@ -1,14 +1,8 @@
 // src/templates/VogueTemplate.jsx
 // import "./fonts/vogue.css"; // use @font-face or Google Fonts
 
+import { TemplateProps } from "@/types";
 import Image from "next/image";
-
-type TemplateProps = {
-  image: string;
-  title: string;
-  subtitle: string;
-  name: string;
-};
 
 export default function VogueTemplate({
   image,
