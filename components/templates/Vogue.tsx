@@ -29,13 +29,15 @@ export default function VogueTemplate({
       </div>
 
       <div className="absolute bottom-24 left-6 right-6">
-        <div className="text-3xl font-bold">{title}</div>
-        <div className="text-lg italic mt-2">{subtitle}</div>
+        {title && <div className="text-3xl font-bold">{title}</div>}
+        {subtitle && <div className="text-3xl font-bold">{subtitle}</div>}
       </div>
 
-      <div className="absolute bottom-6 left-6 text-sm tracking-wider uppercase">
-        {name}
-      </div>
+      {name && (
+        <div className="absolute bottom-6 left-6 text-sm tracking-wider uppercase">
+          {name}
+        </div>
+      )}
     </section>
   );
 }

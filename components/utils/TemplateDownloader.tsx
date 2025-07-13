@@ -29,7 +29,7 @@ const TemplateDownloader = ({ children }: React.PropsWithChildren) => {
       >
         {children}
       </section>
-      <Button onClick={handleDownload}>
+      <Button onClick={handleDownload} className="cursor-pointer">
         <DownloadIcon /> Download
       </Button>
     </section>

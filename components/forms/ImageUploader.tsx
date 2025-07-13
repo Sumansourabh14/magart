@@ -1,11 +1,16 @@
 "use client";
+import ChooseTemplatePreview from "@/components/sections/ChooseTemplatePreview";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import React, { useState } from "react";
-import VogueTemplate from "../templates/Vogue";
-import { Input } from "../ui/input";
+import TemplateRenderer from "../render/TemplateRenderer";
 import TemplateDownloader from "../utils/TemplateDownloader";
 
 const ImageUploader = () => {
   const [image, setImage] = useState<string | null>(null);
+  const [templateId, setTemplateId] = useState<string | null>(null);
+  const [text, setText] = useState<string>("");
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -20,19 +25,41 @@ const ImageUploader = () => {
 
   return (
     <>
-      <form>
+      <section className="py-20">
         <Input type="file" accept="image/*" onChange={handleImageUpload} />
-      </form>
+      </section>
+
+      <Separator />
 
       {image && (
-        <TemplateDownloader>
-          <VogueTemplate
-            image={image}
-            name="John Doe"
-            title="Vogue"
-            subtitle="Vogue subtitle"
+        <section>
+          <ChooseTemplatePreview
+            imageUrl={image}
+            setTemplateId={setTemplateId}
           />
-        </TemplateDownloader>
+        </section>
+      )}
+
+      <Separator />
+
+      {image && templateId && (
+        <section className="space-y-4 max-w-[800px] mx-auto">
+          <section className="space-y-2">
+            <Label>Enter text</Label>
+            <Input
+              placeholder="Enter text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </section>
+          <TemplateDownloader>
+            <TemplateRenderer
+              image={image}
+              templateId={templateId}
+              text={text}
+            />
+          </TemplateDownloader>
+        </section>
       )}
     </>
   );
