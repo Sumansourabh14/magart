@@ -10,11 +10,14 @@ export const updateDownloadCount = async (templateId: string) => {
   }
 };
 
-export const getDownloadCount = async (templateId: string) => {
+export const getDownloadCount = async () => {
   try {
-    const res = await fetch(`/api/template-download-count?id=${templateId}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/template-download-count`,
+      {
+        cache: "no-store",
+      }
+    );
     const data = await res.json();
     return data;
   } catch (error) {

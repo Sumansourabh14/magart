@@ -1,11 +1,8 @@
-import dbConnect from "@/lib/dbConnect";
-import Stats from "@/models/Stats";
+import { getDownloadCount } from "@/services/downloadCount";
 
 const DownloadCount = async () => {
-  await dbConnect();
-
-  const data = await Stats.findOne();
-  const totalCount = data?.totalDownloads;
+  const res = await getDownloadCount();
+  const { totalCount } = res;
 
   return (
     <section className="py-20">

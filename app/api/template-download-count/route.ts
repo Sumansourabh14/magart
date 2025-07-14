@@ -1,9 +1,12 @@
+import dbConnect from "@/lib/dbConnect";
+import Stats from "@/models/Stats";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const param = searchParams.get("id");
-  console.log({ param });
+export async function GET() {
+  await dbConnect();
 
-  return NextResponse.json({ success: true, param });
+  const data = await Stats.findOne();
+  const totalCount = data?.totalDownloads;
+
+  return NextResponse.json({ success: true, totalCount });
 }
