@@ -31,7 +31,7 @@ const ChooseTemplatePreview = ({
   return (
     <section className="py-20">
       <div className="mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-6">Choose a Template</h2>
+        <h2 className="text-3xl font-bold mb-2">Choose a Template</h2>
         <p className="text-muted-foreground mb-10">
           Pick a design that suits your story — personalize it with text, style,
           and images.
@@ -42,7 +42,7 @@ const ChooseTemplatePreview = ({
             <Card
               onClick={() => setTemplateId(template.id)}
               key={template.id}
-              className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition"
+              className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
             >
               <div className="relative h-80">
                 <Image
