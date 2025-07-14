@@ -1,56 +1,43 @@
-import React from "react";
+import Link from "next/link";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "../ui/navigation-menu";
 import { Separator } from "../ui/separator";
-import Image from "next/image";
+import { SITE_METADATA } from "@/utils/constants";
+
+const footerLinks = [
+  {
+    title: "Templates",
+    destination: "/templates",
+  },
+  {
+    title: "Create Image",
+    destination: "/upload/image",
+  },
+];
 
 const Footer = () => {
   return (
-    <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-      <Separator />
-      <a
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/file.svg"
-          alt="File icon"
-          width={16}
-          height={16}
-        />
-        Learn
-      </a>
-      <a
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/window.svg"
-          alt="Window icon"
-          width={16}
-          height={16}
-        />
-        Examples
-      </a>
-      <a
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/globe.svg"
-          alt="Globe icon"
-          width={16}
-          height={16}
-        />
-        Go to nextjs.org →
-      </a>
+    <footer className="mt-12 border-t py-6">
+      <NavigationMenu className="flex flex-col md:flex-row gap-[24px] flex-wrap items-center justify-between max-w-[1400px] mx-auto px-4">
+        <section className="text-sm text-muted-foreground">
+          © {new Date().getFullYear()} {SITE_METADATA.title}. All rights
+          reserved.
+        </section>
+        <NavigationMenuList>
+          {footerLinks.map((item, index) => (
+            <NavigationMenuItem key={index}>
+              <NavigationMenuLink asChild>
+                <Link href={item.destination}>{item.title}</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
+      <Separator className="mt-6" />
     </footer>
   );
 };

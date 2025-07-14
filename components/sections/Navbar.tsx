@@ -21,9 +21,11 @@ const options = [
 
 const Navbar = () => {
   return (
-    <NavigationMenu className="row-start-3 flex gap-[24px] flex-wrap items-center justify-between max-w-[1400px] mx-auto">
+    <NavigationMenu className="flex gap-[12px] flex-wrap items-center justify-between max-w-[1400px] mx-auto">
       <section>
-        <Link href={`/`}>{SITE_METADATA.title}</Link>
+        <Link href={`/`} className="text-xl font-light">
+          {SITE_METADATA.title}
+        </Link>
       </section>
       <NavigationMenuList>
         {options.map((item, index) => (
