@@ -21,7 +21,7 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="mt-12 border-t py-6">
+    <footer className="border-t py-6">
       <NavigationMenu className="flex flex-col md:flex-row gap-[24px] flex-wrap items-center justify-between max-w-[1400px] mx-auto px-4">
         <section className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} {SITE_METADATA.title}. All rights

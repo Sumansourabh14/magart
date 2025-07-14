@@ -1,3 +1,4 @@
+import DownloadCount from "@/components/render/DownloadCount";
 import Features from "@/components/sections/Features";
 import Footer from "@/components/sections/Footer";
 import Hero from "@/components/sections/Hero";
@@ -17,6 +18,8 @@ export default function Home() {
           <TemplatesLandingSection />
           <Separator />
           <Features />
+          <Separator />
+          <DownloadCount />
         </section>
       </main>
       <Footer />

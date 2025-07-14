@@ -1,10 +1,15 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { updateDownloadCount } from "@/services/downloadCount";
 import { toPng } from "html-to-image";
 import { DownloadIcon } from "lucide-react";
 import React, { useRef } from "react";
 
-const TemplateDownloader = ({ children }: React.PropsWithChildren) => {
+type TemplateDownloaderProps = {
+  id: string;
+} & React.PropsWithChildren;
+
+const TemplateDownloader = ({ id, children }: TemplateDownloaderProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const handleDownload = async () => {
@@ -16,6 +21,8 @@ const TemplateDownloader = ({ children }: React.PropsWithChildren) => {
       link.href = dataUrl;
       link.download = "cover.png";
       link.click();
+
+      await updateDownloadCount(id);
     } catch (error) {
       console.error(error);
     }

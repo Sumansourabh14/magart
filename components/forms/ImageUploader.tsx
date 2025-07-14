@@ -105,7 +105,7 @@ const ImageUploader = () => {
                 />
               </section>
             </section>
-            <TemplateDownloader>
+            <TemplateDownloader id={templateId}>
               <TemplateRenderer
                 image={image}
                 templateId={templateId}
