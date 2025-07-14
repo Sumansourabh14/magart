@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { getDownloadCount } from "@/services/downloadCount";
 
 const DownloadCount = async () => {
