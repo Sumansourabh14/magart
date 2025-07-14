@@ -24,9 +24,11 @@ const templates: Template[] = [
 const ChooseTemplatePreview = ({
   imageUrl,
   setTemplateId,
+  setTemplateName,
 }: {
   imageUrl: string;
   setTemplateId: (id: string) => void;
+  setTemplateName: (id: string) => void;
 }) => {
   return (
     <section className="py-20">
@@ -40,7 +42,10 @@ const ChooseTemplatePreview = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {templates.map((template) => (
             <Card
-              onClick={() => setTemplateId(template.id)}
+              onClick={() => {
+                setTemplateId(template.id);
+                setTemplateName(template.name);
+              }}
               key={template.id}
               className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
             >

@@ -13,6 +13,7 @@ import TemplateDownloader from "../utils/TemplateDownloader";
 const ImageUploader = () => {
   const [image, setImage] = useState<string | null>(null);
   const [templateId, setTemplateId] = useState<string | null>(null);
+  const [templateName, setTemplateName] = useState<string | null>(null);
   const [text, setText] = useState<string>("");
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,29 +70,35 @@ const ImageUploader = () => {
           <ChooseTemplatePreview
             imageUrl={image}
             setTemplateId={setTemplateId}
+            setTemplateName={setTemplateName}
           />
         </section>
       )}
 
       <Separator />
 
-      {image && templateId && (
-        <section className="space-y-4 max-w-[800px] mx-auto mt-20">
-          <section className="space-y-2">
-            <Label>Enter text</Label>
-            <Input
-              placeholder="Enter text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
+      {image && templateId && templateName && (
+        <section className="space-y-4 mt-20">
+          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+            {templateName}
+          </h3>
+          <section className="flex flex-col md:flex-row-reverse gap-12 justify-center">
+            <section className="space-y-2 mt-8 flex-11/12">
+              <Label>Enter text</Label>
+              <Input
+                placeholder="Enter text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
+            </section>
+            <TemplateDownloader>
+              <TemplateRenderer
+                image={image}
+                templateId={templateId}
+                text={text}
+              />
+            </TemplateDownloader>
           </section>
-          <TemplateDownloader>
-            <TemplateRenderer
-              image={image}
-              templateId={templateId}
-              text={text}
-            />
-          </TemplateDownloader>
         </section>
       )}
     </>
