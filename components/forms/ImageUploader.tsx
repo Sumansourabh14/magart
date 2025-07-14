@@ -4,6 +4,7 @@ import ChooseTemplatePreview from "@/components/sections/ChooseTemplatePreview";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { ArrowBigDown, UploadCloud } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -15,6 +16,8 @@ const ImageUploader = () => {
   const [templateId, setTemplateId] = useState<string | null>(null);
   const [templateName, setTemplateName] = useState<string | null>(null);
   const [text, setText] = useState<string>("");
+  const [rawColor, setRawColor] = useState<string>("#ffffff");
+  const debouncedColor = useDebouncedValue(rawColor, 150);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -83,19 +86,31 @@ const ImageUploader = () => {
             {templateName}
           </h3>
           <section className="flex flex-col md:flex-row-reverse gap-12 justify-center">
-            <section className="space-y-2 mt-8 flex-11/12">
-              <Label>Enter text</Label>
-              <Input
-                placeholder="Enter text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-              />
+            <section>
+              <section className="space-y-2 mt-8 flex-11/12">
+                <Label>Title</Label>
+                <Input
+                  type="text"
+                  placeholder="Enter text..."
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
+              </section>
+              <section className="space-y-2 mt-8 flex-11/12">
+                <Label>Text color</Label>
+                <Input
+                  type="color"
+                  value={rawColor}
+                  onChange={(e) => setRawColor(e.target.value)}
+                />
+              </section>
             </section>
             <TemplateDownloader>
               <TemplateRenderer
                 image={image}
                 templateId={templateId}
                 text={text}
+                textColor={debouncedColor}
               />
             </TemplateDownloader>
           </section>
