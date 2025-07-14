@@ -35,7 +35,7 @@ const ChooseTemplatePreview = ({
                   image={imageUrl}
                   templateId={template.id}
                   text={template.name}
-                  textColor="#ffffff"
+                  textColor={template.style.color || ""}
                 />
               </div>
               <div className="px-4 mt-52">
