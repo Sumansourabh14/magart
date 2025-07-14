@@ -30,7 +30,7 @@ const ChooseTemplatePreview = ({
               key={template.id}
               className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
             >
-              <div className="relative h-80">
+              <div className="relative group-hover:scale-105 transition-transform">
                 <TemplateRenderer
                   image={imageUrl}
                   templateId={template.id}
@@ -38,7 +38,7 @@ const ChooseTemplatePreview = ({
                   textColor={template.style.color || ""}
                 />
               </div>
-              <div className="px-4 mt-52">
+              <div className="px-4">
                 <h3 className="text-lg font-semibold">{template.name}</h3>
               </div>
             </Card>
