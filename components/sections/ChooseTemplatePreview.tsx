@@ -1,25 +1,6 @@
-import Image from "next/image";
 import { Card } from "../ui/card";
-
-type Template = {
-  id: string;
-  name: string;
-};
-
-const templates: Template[] = [
-  {
-    id: "vogue",
-    name: "Vogue Style",
-  },
-  {
-    id: "bold",
-    name: "Bold Minimal",
-  },
-  {
-    id: "aesthetic",
-    name: "Aesthetic Mood",
-  },
-];
+import TemplateRenderer from "../render/TemplateRenderer";
+import { templates } from "@/data/templates";
 
 const ChooseTemplatePreview = ({
   imageUrl,
@@ -50,14 +31,14 @@ const ChooseTemplatePreview = ({
               className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
             >
               <div className="relative h-80">
-                <Image
-                  src={imageUrl}
-                  alt={template.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform"
+                <TemplateRenderer
+                  image={imageUrl}
+                  templateId={template.id}
+                  text={template.name}
+                  textColor="#ffffff"
                 />
               </div>
-              <div className="p-4">
+              <div className="px-4 mt-52">
                 <h3 className="text-lg font-semibold">{template.name}</h3>
               </div>
             </Card>

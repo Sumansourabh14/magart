@@ -14,16 +14,20 @@ const TemplateRenderer = React.memo(
     const template = templates.find((t) => t.id === templateId);
     if (!template) return null;
 
+    const { width, height } = template.dimensions;
+    const aspectRatio = (height / width) * 100;
+
     return (
       <div
         className="relative"
         style={{
-          width: template.dimensions.width,
-          height: template.dimensions.height,
           fontFamily: template.font,
         }}
       >
-        <div className="relative w-full h-full">
+        <div
+          className="relative w-full h-full"
+          style={{ paddingBottom: `${aspectRatio}%` }}
+        >
           <Image
             src={image}
             alt="cover background"

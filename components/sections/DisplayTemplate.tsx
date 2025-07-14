@@ -1,16 +1,29 @@
-import VogueTemplate from "../templates/Vogue";
-import TemplateDownloader from "../utils/TemplateDownloader";
+import { templates } from "@/data/templates";
+import Image from "next/image";
+import { Card } from "../ui/card";
 
 const DisplayTemplate = () => {
   return (
-    <TemplateDownloader>
-      <VogueTemplate
-        image="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        name="John Doe"
-        title="Vogue"
-        subtitle="Vogue subtitle"
-      />
-    </TemplateDownloader>
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {templates.map((template) => (
+        <Card
+          key={template.id}
+          className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
+        >
+          <div className="relative h-80">
+            <Image
+              src={template.preview}
+              alt={template.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform"
+            />
+          </div>
+          <div className="p-4">
+            <h3 className="text-lg font-semibold">{template.name}</h3>
+          </div>
+        </Card>
+      ))}
+    </section>
   );
 };
 
