@@ -1,29 +1,29 @@
 import { templates } from "@/data/templates";
-import Image from "next/image";
+import TemplateRenderer from "../render/TemplateRenderer";
 import { Card } from "../ui/card";
 
 const DisplayTemplate = () => {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {templates.map((template) => (
         <Card
           key={template.id}
-          className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
+          className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition"
         >
-          <div className="relative h-80">
-            <Image
-              src={template.preview}
-              alt={template.name}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform"
+          <div className="relative group-hover:scale-105 transition-transform">
+            <TemplateRenderer
+              image={template.preview}
+              templateId={template.id}
+              text={template.name}
+              textColor={template.style.color || ""}
             />
           </div>
-          <div className="p-4">
+          <div className="px-4">
             <h3 className="text-lg font-semibold">{template.name}</h3>
           </div>
         </Card>
       ))}
-    </section>
+    </div>
   );
 };
 

@@ -1,36 +1,12 @@
-import Image from "next/image";
+import { templates } from "@/data/templates";
+import TemplateRenderer from "../render/TemplateRenderer";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 import Link from "next/link";
-
-type Template = {
-  id: string;
-  name: string;
-  preview: string;
-};
-
-const templates: Template[] = [
-  {
-    id: "vogue",
-    name: "Vogue Style",
-    preview:
-      "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    id: "bold",
-    name: "Bold Minimal",
-    preview:
-      "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    id: "aesthetic",
-    name: "Aesthetic Mood",
-    preview:
-      "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
 
 export function TemplatesLandingSection() {
   return (
-    <section className="py-40">
+    <section className="py-30">
       <div className="mx-auto px-4">
         <h2 className="text-3xl font-bold mb-6">Choose a Template</h2>
         <p className="text-muted-foreground mb-10">
@@ -39,26 +15,33 @@ export function TemplatesLandingSection() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {templates.map((template) => (
-            <Link
-              href={`/editor?template=${template.id}`}
+          {templates.slice(0, 6).map((template) => (
+            <Card
               key={template.id}
               className="group bg-background rounded-xl overflow-hidden shadow hover:shadow-lg transition"
             >
-              <div className="relative h-80">
-                <Image
-                  src={template.preview}
-                  alt={template.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform"
+              <div className="relative group-hover:scale-105 transition-transform">
+                <TemplateRenderer
+                  image={template.preview}
+                  templateId={template.id}
+                  text={template.name}
+                  textColor={template.style.color || ""}
                 />
               </div>
-              <div className="p-4">
+              <div className="px-4">
                 <h3 className="text-lg font-semibold">{template.name}</h3>
               </div>
-            </Link>
+            </Card>
           ))}
         </div>
+
+        <section className="flex justify-center">
+          <Button asChild className="py-8 px-16 mt-10">
+            <Link href="/templates" className="text-xl">
+              See all templates
+            </Link>
+          </Button>
+        </section>
       </div>
     </section>
   );

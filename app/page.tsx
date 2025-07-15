@@ -14,7 +14,6 @@ export default function Home() {
         <Hero />
         <section className="max-w-[1400px] mx-auto">
           <Separator />
-          {/* <DisplayTemplate /> */}
           <TemplatesLandingSection />
           <Separator />
           <Features />
